@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const express = require("express");
 const db = require("./models/index");
 const clientRouter = require("./routes/clientRoutes");
+const loginRouter = require("./routes/loginRoutes");
 
 const app = express();
 
@@ -13,7 +14,7 @@ app.use(express.json())
 
 db.sequelize.authenticate()
 .then(() => {
-  db.sequelize.sync({force: true});
+  db.sequelize.sync({force: false});
 console.log(`Authenticated`);
 })
 .catch((err) => console.log(`Error occurred `, err))
@@ -21,6 +22,7 @@ console.log(`Authenticated`);
 const port = 4000
 
 app.use('/api/client', clientRouter);
+app.use('/api/login', loginRouter);
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port}`);
