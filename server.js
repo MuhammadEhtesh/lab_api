@@ -1,5 +1,3 @@
-
-"use strict";
 const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
@@ -10,18 +8,19 @@ const app = express();
 
 app.use(cors());
 app.use(morgan("dev"));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json())
 
-db.sequelize
-.authenticate()
+db.sequelize.authenticate()
 .then(() => {
-db.sequelize.sync({ force: false });
+  db.sequelize.sync({force: true});
 console.log(`Authenticated`);
 })
 .catch((err) => console.log(`Error occurred `, err))
 
 const port = 4000
 
-app.get('/api/client', clientRouter);
+app.use('/api/client', clientRouter);
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port}`);
