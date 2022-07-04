@@ -1,0 +1,31 @@
+{
+  "name": "lab",
+  "version": "1.0.0",
+  "description": "rest api for lab",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhammadEhtesh/lab_api.git"
+  },
+  "author": "webeasy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuhammadEhtesh/lab_api/issues"
+  },
+  "homepage": "https://github.com/MuhammadEhtesh/lab_api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
