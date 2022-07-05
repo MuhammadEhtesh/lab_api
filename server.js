@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const express = require("express");
 const db = require("./models/index");
 const clientRouter = require("./routes/clientRoutes");
-const loginRouter = require("./routes/loginRoutes");
+const authRouter = require("./routes/authRoutes");
 
 const app = express();
 
@@ -22,7 +22,8 @@ console.log(`Authenticated`);
 const port = 4000
 
 app.use('/api/client', clientRouter);
-app.use('/api/login', loginRouter);
+app.use('/api/auth', authRouter);
+
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port}`);

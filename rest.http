@@ -23,3 +23,14 @@ content-type: application/json
     "username": "sampleuser",
     "password": "faizan@gmail.com"
 }
+###
+POST http://localhost:4000/api/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "firstname": "sampleuser",
+    "lastname": "sampleuser",
+    "email": "syedfsk@gmail.com",
+    "password": "1234",
+    "gender": "Male"
+}
