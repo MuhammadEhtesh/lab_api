@@ -1,36 +1,50 @@
-POST http://localhost:4000/api/client HTTP/1.1
+# POST http://localhost:4000/api/client HTTP/1.1
+# content-type: application/json
+
+# {
+#     "username": "sampleuser",
+#     "email": "faizan@gmail.com",
+#     "password": "12345"
+# }
+
+###
+# GET http://localhost:4000/api/client HTTP/1.1
+###
+# GET http://localhost:4000/api/client/1 HTTP/1.1
+
+
+###
+POST http://localhost:4000/api/auth/login HTTP/1.1
 content-type: application/json
 
 {
-    "username": "sampleuser",
-    "email": "faizan@gmail.com",
-    "password": "12345"
-}
-
-###
-GET http://localhost:4000/api/client HTTP/1.1
-
-
-###
-GET http://localhost:4000/api/client/1 HTTP/1.1
-
-
-###
-POST http://localhost:4000/api/login HTTP/1.1
-content-type: application/json
-
-{
-    "username": "sampleuser",
-    "password": "faizan@gmail.com"
+    "username": "Ali786",
+    "password": "1234"
 }
 ###
 POST http://localhost:4000/api/auth/register HTTP/1.1
 content-type: application/json
 
 {
-    "firstname": "sampleuser",
-    "lastname": "sampleuser",
-    "email": "syedfsk@gmail.com",
-    "password": "1234",
-    "gender": "Male"
+    "company":"Webeasy1",
+    "firstname": "Ali",
+    "lastname": "Ahmad",
+    "username":"Ali786",
+    "email": "abc@gmail.com",
+    "addressline1":"street 5",
+    "addressline2":"MDK",
+    "addressline3":"MDK",
+    "city":"SKP",
+    "state":"punjab",
+    "zipcode":"78786",
+    "phonenumber":"03198734278"
+}
+
+###
+POST http://localhost:4000/api/auth/passwordset HTTP/1.1
+content-type: application/json
+
+{
+    "username":"Ali786",
+    "password":"1234"
 }

@@ -15,7 +15,7 @@ app.use(express.json())
 db.sequelize.authenticate()
 .then(() => {
   db.sequelize.sync({force: false});
-console.log(`Authenticated`);
+console.log(`Db Connected.`);
 })
 .catch((err) => console.log(`Error occurred `, err))
 
