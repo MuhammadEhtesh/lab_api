@@ -14,5 +14,7 @@ const dbContext = {};
 dbContext.sequelize = sequelize;
 dbContext.Sequelize = Sequelize;
 dbContext.Clients = require("./client")(sequelize, Sequelize);
+dbContext.Users = require("./user")(sequelize, Sequelize);
+
 
 module.exports = dbContext;

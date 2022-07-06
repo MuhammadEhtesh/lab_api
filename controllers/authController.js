@@ -13,10 +13,17 @@ exports.login = (req, res) => {
 }
 
 exports.register = (req, res) => {
-    User.create(req.body)
-    .then((resp) => {
-        console.log(resp);
-        res.send(resp);
-    })
-    .catch(err => console.log(err));
+    User.findOne({ where : { email: req.body.email }}).then(data => {
+        if(data){
+            res.send("User already exists.");
+        }
+        else{
+            User.create(req.body)
+            .then((resp) => {
+                console.log(resp);
+                res.send(resp);
+            })
+            .catch(err => console.log(err));
+        }
+    }).catch(err => console.log(err))
 }
