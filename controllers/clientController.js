@@ -10,7 +10,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  if (req.body.name == null || req.body.email == null) {
+  if (req.body.username == null || req.body.email == null) {
     res.status(204).send({
       error: "Empty content not allowed!!!",
     });
