@@ -1,6 +1,9 @@
+const jwt = require('jsonwebtoken');
+
 const bcrypt = require('bcrypt');
 const dbContext = require("../models");
 const User = dbContext.Users;
+
 
 
 exports.login = async (req, res) => {
@@ -49,9 +52,21 @@ exports.passwordset = async (req, res) => {
   }
 };
 
+// Api For Forgot Password
 exports.forgotpassword = async (req, res) => {
   const user = await User.findOne({ where: { email: req.body.email } });
   if (user) {
     res.send(user.password);
   }
+}
+
+//Api for json Tocken
+exports.jwttoken = (req, res) => {
+  let jwtSecretKey = process.env.JWT_SECRET_KEY;
+  let data = {
+      time: Date(),
+      userId: 12,
+  }
+  const token = jwt.sign(data, jwtSecretKey);
+  res.send(token);
 }

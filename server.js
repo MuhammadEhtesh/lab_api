@@ -4,13 +4,14 @@ const express = require("express");
 const db = require("./models/index");
 const clientRouter = require("./routes/clientRoutes");
 const authRouter = require("./routes/authRoutes");
-
+const dotenv = require('dotenv');
 const app = express();
 
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
+dotenv.config();
 
 db.sequelize.authenticate()
 .then(() => {
