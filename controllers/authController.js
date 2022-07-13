@@ -1,25 +1,22 @@
+const bcrypt = require('bcrypt');
 const dbContext = require("../models");
 const User = dbContext.Users;
 
-// exports.login = (req, res) => {
 
-//     User.findOne({ where: { username: req.body.username}})
-//     .then((resp) => {
-//         console.log(resp);
-//         res.send(resp);
-//     })
-//     .catch(err => console.log(err));
-// }
-exports.login = (req, res) => {
-  const passwordHash = require("../Utilities/Utilities")(req.body.password);
-  User.findOne({
-    where: { username: req.body.username },
-  })
-    .then((resp) => {
-      console.log(resp);
-      res.send(resp);
-    })
-    .catch((err) => console.log(err));
+exports.login = async (req, res) => {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(req.body.password, salt, async (err, hash) => {
+      const loginUser = await User.findOne({
+        where: { username: req.body.username, password: hash },
+      })
+      if (loginUser) {
+        res.send(loginUser)
+      }
+      else {
+        res.send(null)
+      }
+    });
+  });
 };
 
 exports.register = (req, res) => {
@@ -30,7 +27,6 @@ exports.register = (req, res) => {
       } else {
         User.create(req.body)
           .then((resp) => {
-            console.log(resp);
             res.send(resp);
           })
           .catch((err) => console.log(err));
@@ -39,22 +35,20 @@ exports.register = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-exports.passwordset = (req, res) => {
-  const passwordHash = require("../Utilities/Utilities")(req.body.password);
-  if (passwordHash) {
-    User.findOne({ where: { username: req.body.username } })
-      .then((data) => {
-        if (data) {
-          User.update(
-            { password: passwordHash },
-            { where: { username: req.body.username } }
-          )
-            .then((resp) => {
-              res.send(resp);
-            })
-            .catch((err) => console.log(err));
-        }
-      })
-      .catch((err) => res.send(err));
+exports.passwordset = async (req, res) => {
+  const user = await User.findOne({ where: { username: req.body.username } });
+  if (user) {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(req.body.password, salt, async (err, hash) => {
+        await User.update(
+          { password: hash },
+          { where: { username: req.body.username } }
+        );
+        // .then((resp) => {
+        //   res.send(resp);
+        // })
+        // .catch((err) => console.log(err));
+      });
+    });
   }
 };
