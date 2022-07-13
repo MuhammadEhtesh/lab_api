@@ -7,7 +7,7 @@ exports.login = async (req, res) => {
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(req.body.password, salt, async (err, hash) => {
       const loginUser = await User.findOne({
-        where: { username: req.body.username, password: hash },
+        where: { email: req.body.email, password: hash },
       })
       if (loginUser) {
         res.send(loginUser)
@@ -36,7 +36,7 @@ exports.register = (req, res) => {
 };
 
 exports.passwordset = async (req, res) => {
-  const user = await User.findOne({ where: { username: req.body.username } });
+  const user = await User.findOne({ where: { email: req.body.email } });
   if (user) {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(req.body.password, salt, async (err, hash) => {
@@ -44,11 +44,14 @@ exports.passwordset = async (req, res) => {
           { password: hash },
           { where: { username: req.body.username } }
         );
-        // .then((resp) => {
-        //   res.send(resp);
-        // })
-        // .catch((err) => console.log(err));
       });
     });
   }
 };
+
+exports.forgotpassword = async (req, res) => {
+  const user = await User.findOne({ where: { email: req.body.email } });
+  if (user) {
+    res.send(user.password);
+  }
+}
