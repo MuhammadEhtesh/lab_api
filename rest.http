@@ -18,8 +18,8 @@ POST http://localhost:4000/api/auth/login HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Ali7864",
-    "password": "1234"
+    "email": "shani@gmail.com",
+    "password": "12345"
 }
 ###
 POST http://localhost:4000/api/auth/register HTTP/1.1
@@ -27,17 +27,17 @@ content-type: application/json
 
 {
     "company":"Webeasy1",
-    "firstname": "Ali",
-    "lastname": "Ahmad",
-    "username":"Ali7864",
-    "email": "abcd@gmail.com",
+    "firstname": "shani",
+    "lastname": "bhatti",
+    "username":"shani.bhatti",
+    "email": "shani@gmail.com",
     "addressline1":"street 5",
     "addressline2":"MDK",
     "addressline3":"MDK",
     "city":"SKP",
     "state":"punjab",
     "zipcode":"78786",
-    "phonenumber":"03198734278"
+    "phonenumber":"03204033575"
 }
 
 ###
@@ -45,8 +45,8 @@ POST http://localhost:4000/api/auth/passwordset HTTP/1.1
 content-type: application/json
 
 {
-    "username":"Ali7864",
-    "password":"1234"
+    "email":"shani@gmail.com",
+    "password":"12345"
 }
 
 ###

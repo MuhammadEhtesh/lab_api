@@ -7,19 +7,19 @@ const User = dbContext.Users;
 
 
 exports.login = async (req, res) => {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(req.body.password, salt, async (err, hash) => {
-      const loginUser = await User.findOne({
-        where: { email: req.body.email, password: hash },
-      })
-      if (loginUser) {
-        res.send(loginUser)
-      }
-      else {
-        res.send(null)
-      }
-    });
-  });
+
+  const loginUser = await User.findOne({
+          where: { email: req.body.email },
+        });
+
+  bcrypt.compare(req.body.password, loginUser.password, async (err, result) => {
+    if(result){
+      res.send('Login successful.');
+    }
+    else{
+      res.send('Please try again.')
+    }
+  })
 };
 
 exports.register = (req, res) => {
@@ -45,7 +45,7 @@ exports.passwordset = async (req, res) => {
       bcrypt.hash(req.body.password, salt, async (err, hash) => {
         await User.update(
           { password: hash },
-          { where: { username: req.body.username } }
+          { where: { email: req.body.email } }
         );
       });
     });
