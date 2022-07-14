@@ -4,8 +4,8 @@ const sequelize = new Sequelize({
   host: "localhost",
   dialect: "postgres",
   username: "postgres",
-  password: "12345",
-  database: "postgres",
+  password: "Aqib123",
+  database: "Lab_Api",
   logging: false,
 });
 
@@ -15,6 +15,8 @@ dbContext.sequelize = sequelize;
 dbContext.Sequelize = Sequelize;
 dbContext.Clients = require("./client")(sequelize, Sequelize);
 dbContext.Users = require("./user")(sequelize, Sequelize);
+dbContext.Products = require('./product')(sequelize, Sequelize);
+
 
 
 module.exports = dbContext;
