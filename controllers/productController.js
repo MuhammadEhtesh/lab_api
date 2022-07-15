@@ -10,7 +10,8 @@ exports.upload = async (req, res) => {
     }
 
     req.body.imageUrl = req.imageUrl;
-    req.body.price = parseInt(req.body.price);
+    var intvalue=parseInt(req.body.price);
+    req.body.price = intvalue;
     const prod = await Product.create(req.body);
     res.status(200).send({
       message: "Uploaded the file successfully: " + req.file.originalname,
