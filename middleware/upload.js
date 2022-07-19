@@ -18,8 +18,10 @@ let storage = multer.diskStorage({
     if(file){
       req.file = file;
     }
-    const filename = file.originalname.split('.')[0] + moment().toJSON() + "." + file.originalname.split('.')[1]; 
+    const filename = file.originalname.split('.')[0] + moment().format('YYYY-MM-DD HH:mm:ss:ss').replace(' ', '').replace(':', '').replace(':', '').replace('-', '').replace('-','') + "." + file.originalname.split('.')[1]; 
     req.imageUrl = filename;
+    file.originalname = filename;
+    console.log(filename);
     cb(null, file.originalname);
   },
 });
