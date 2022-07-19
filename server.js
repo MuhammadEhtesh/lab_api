@@ -15,10 +15,13 @@ app.use(express.json())
 dotenv.config();
 global.__basedir = __dirname;
 
+app.use(express.static('public')); 
+app.use('/images', express.static('images'));
+
 db.sequelize.authenticate()
 .then(() => {
   db.sequelize.sync({force: false});
-console.log(`Db Connected.`);
+console.log(`Db is Connected.`);
 })
 .catch((err) => console.log(`Error occurred `, err))
 
