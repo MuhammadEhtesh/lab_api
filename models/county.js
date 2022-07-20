@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
     
       },
       {
-        tableName: "Counties",
+        tableName: "County",
       }
     );
     return County;

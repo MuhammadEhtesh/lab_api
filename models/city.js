@@ -2,7 +2,7 @@ module.exports = (sequelize, Sequelize) => {
     const City = sequelize.define(
       "City",
       {
-        cityId: {
+        id: {
           type: Sequelize.INTEGER,
           autoIncrement: true,
           primaryKey: true,

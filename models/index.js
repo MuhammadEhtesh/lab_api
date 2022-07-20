@@ -4,8 +4,8 @@ const sequelize = new Sequelize({
   host: "localhost",
   dialect: "postgres",
   username: "postgres",
-  password: "superuser123",
-  database: "Regdb",
+  password: "12345",
+  database: "postgres",
   logging: false,
 });
 

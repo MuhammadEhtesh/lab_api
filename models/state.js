@@ -21,7 +21,7 @@ module.exports = (sequelize, Sequelize) => {
     
       },
       {
-        tableName: "States",
+        tableName: "State",
       }
     );
     return State;

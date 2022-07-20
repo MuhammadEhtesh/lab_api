@@ -45,7 +45,6 @@ module.exports = (sequelize, Sequelize) => {
                 key:'id'
             }
           },
-    
       },
       {
         tableName: "Address",
