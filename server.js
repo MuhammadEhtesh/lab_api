@@ -20,7 +20,7 @@ app.use('/images', express.static('images'));
 
 db.sequelize.authenticate()
 .then(() => {
-  db.sequelize.sync({force: false});
+  db.sequelize.sync({force: true});
 console.log(`Db is Connected.`);
 })
 .catch((err) => console.log(`Error occurred `, err))
