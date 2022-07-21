@@ -11,6 +11,10 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.STRING,
           allowNull: false,
         },
+        zipCode: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
         stateId: {
             type: Sequelize.INTEGER,
             references:{
@@ -24,6 +28,7 @@ module.exports = (sequelize, Sequelize) => {
                 model:"Country",
                 key:'id'
             }
+
           },
     
       },

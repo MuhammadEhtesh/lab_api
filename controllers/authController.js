@@ -5,7 +5,7 @@ const dbContext = require("../models");
 const User = dbContext.Users;
 
 
-
+//Api for verification of user LogIn
 exports.login = async (req, res) => {
 
   const loginUser = await User.findOne({
@@ -22,6 +22,7 @@ exports.login = async (req, res) => {
   })
 };
 
+//Api for Register new User
 exports.register = (req, res) => {
   User.findOne({ where: { email: req.body.email } })
     .then((data) => {
@@ -38,6 +39,7 @@ exports.register = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+//Api for Password of user
 exports.passwordset = async (req, res) => {
   const user = await User.findOne({ where: { email: req.body.email } });
   if (user) {

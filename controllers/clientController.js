@@ -9,6 +9,7 @@ exports.findAll = (req, res) => {
     .catch((err) => res.status(500).send(err));
 };
 
+//Api for Create new Client
 exports.create = (req, res) => {
   if (req.body.username == null || req.body.email == null) {
     res.status(204).send({

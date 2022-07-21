@@ -5,6 +5,7 @@ const db = require("./models/index");
 const clientRouter = require("./routes/clientRoutes");
 const authRouter = require("./routes/authRoutes");
 const productRouter = require('./routes/productRoutes');
+const addressRouter = require("./routes/addressRoutes");
 const dotenv = require('dotenv');
 const app = express();
 
@@ -30,7 +31,7 @@ const port = 4000
 app.use('/api/client', clientRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/product', productRouter);
-// add new route for address which will include all the api's for the country, state, county, city and address. Add new route file addressRoutes.js.
+app.use('/api/address', addressRouter);
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port}`);
