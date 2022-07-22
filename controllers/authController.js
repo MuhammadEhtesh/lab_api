@@ -48,9 +48,10 @@ exports.passwordset = async (req, res) => {
         await User.update(
           { password: hash },
           { where: { email: req.body.email } }
-        );
+          );
       });
     });
+    res.send('Password is Saved Successfully');
   }
 };
 
