@@ -9,14 +9,20 @@ const User = dbContext.Users;
 exports.login = async (req, res) => {
 
   const loginUser = await User.findOne({
-          where: { email: req.body.email },
-        });
+    where: { email: req.body.email },
+  });
 
   bcrypt.compare(req.body.password, loginUser.password, async (err, result) => {
-    if(result){
-      res.send('Login successful.');
+    if (result) {
+      let jwtSecretKey = process.env.JWT_SECRET_KEY;
+      let data = {
+        time: Date(),
+        userId: 12,
+      }
+      const token = jwt.sign(data, jwtSecretKey);
+      res.status(200).send({ api_token: token, User: loginUser })
     }
-    else{
+    else {
       res.send('Please try again.')
     }
   })
@@ -48,7 +54,7 @@ exports.passwordset = async (req, res) => {
         await User.update(
           { password: hash },
           { where: { email: req.body.email } }
-          );
+        );
       });
     });
     res.send('Password is Saved Successfully');
@@ -67,8 +73,8 @@ exports.forgotpassword = async (req, res) => {
 exports.jwttoken = (req, res) => {
   let jwtSecretKey = process.env.JWT_SECRET_KEY;
   let data = {
-      time: Date(),
-      userId: 12,
+    time: Date(),
+    userId: 12,
   }
   const token = jwt.sign(data, jwtSecretKey);
   res.send(token);
